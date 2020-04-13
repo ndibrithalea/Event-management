@@ -1,7 +1,7 @@
 <template>
   <div class="event-single">
     <section class="hero is-primary">
-      <div class="hero-head">
+      <div class="hero-head text-white">
         <div class="container">
           <h1 class="title">
             {{ event.name }}
@@ -19,9 +19,11 @@
         <p class="is-size-4 description">{{ event.description }}</p>
         <p class="is-size-5"><strong>Location:</strong> {{ event.location }}</p>
         <p class="is-size-5"><strong>Category:</strong> {{ event.category }}</p>
-        <div class="event-images columns is-multiline has-text-centered">
-          <div v-for="image in event.images" :key="image.id" class="column is-one-third">
-            <img :src="image" :alt="event.name">
+        <div class="event-images row">
+          <div v-for="image in event.images" :key="image.id">
+            <div class="col-md-2 mb-4">
+              <img :src="image" :alt="event.name">
+            </div>
           </div>
         </div>
       </div>
@@ -69,13 +71,14 @@ export default {
   created() {
     const ID = Number(this.$route.params.id);
     const events = this.events.find(event => event.id === ID);
-    this.event = event;
+    this.event = events;
   }
 }
 </script>
 
 <style lang="scss" scoped>
   .event-single {
+    text-align: left;
     margin-top: 30px;
   }
   .hero-head {
